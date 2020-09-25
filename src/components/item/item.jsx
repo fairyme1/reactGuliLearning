@@ -1,14 +1,24 @@
 import React , {Component} from 'react'
 
 export default class Item extends Component{
- render(){
+
+    delete=(id)=>{
+        const {deleteComment} = this.props
+        if(window.confirm("确认删除吗？")){
+            deleteComment(id)
+        }
+       
+    }
+
+    render(){
+    let {id,name,content} = this.props
      return (
     <li className="list-group-item">
         <div className="handle">
-          <a href="#1">删除</a>
+          <a href="#1" onClick={()=>{this.delete(id)}}>删除</a>
         </div>
-        <p className="user"><span >xxx</span><span>说:</span></p>
-        <p className="centence">React不错!</p>
+     <p className="user"><span >{name}</span><span>说:</span></p>
+     <p className="centence">{content}</p>
     </li>
       
      )
